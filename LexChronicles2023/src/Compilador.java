@@ -413,7 +413,32 @@ public class Compilador extends javax.swing.JFrame {
         Retorna un color lexico
         Llama al metodo, con el color por defecto
     */
-
+    private void colorAnalysis() {
+        /* Limpiar el arreglo de colores */
+        textsColor.clear();
+        /* Extraer rangos de colores */
+        LexerColor lexerColor;
+        try {
+            File codigo = new File("color.encrypter");
+            FileOutputStream output = new FileOutputStream(codigo);
+            byte[] bytesText = jtpCode.getText().getBytes();
+            output.write(bytesText);
+            BufferedReader entrada = new BufferedReader(new InputStreamReader(new FileInputStream(codigo), "UTF8"));
+            lexerColor = new LexerColor(entrada);
+            while (true) {
+                TextColor textColor = lexerColor.yylex();
+                if (textColor == null) {
+                    break;
+                }
+                textsColor.add(textColor);
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("El archivo no pudo ser encontrado... " + ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println("Error al escribir en el archivo... " + ex.getMessage());
+        }
+        Functions.colorTextPane(textsColor, jtpCode, new Color(40, 40, 40));
+    }
 
     /*
         Recorre todos los tokens
