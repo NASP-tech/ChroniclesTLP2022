@@ -350,7 +350,61 @@ public class Compilador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEjecutarActionPerformed
 
     
-    
+    private void executeCode(ArrayList<String> blocksOfCode, int repeats){
+        for(int j=1; j<=repeats; j++){
+            int repeatCode = -1;
+            for(int i=0; i<blocksOfCode.size(); i++){
+                String blockOfCode = blocksOfCode.get(i);
+                if(repeatCode!=-1){
+                    int[] posicionMarcador = CodeBlock.getPositionOfBothMarkers(blocksOfCode, blockOfCode);
+                    executeCode(new ArrayList<>(blocksOfCode.subList(posicionMarcador[0],posicionMarcador[1])), repeatCode);
+                    repeatCode = -1;
+                    i = posicionMarcador[1];
+                }
+                else{
+                    String[] sentences = blockOfCode.split(";");
+                    for(String sentence : sentences) {
+                        sentence = sentence.trim();
+                        if(sentence.startsWith("pintar")){
+                            String parametro;
+                            if(sentence.contains("$")){
+                                parametro = identificadores.get(sentence.substring(9, sentence.length()-2));
+                            }
+                            else{
+                                parametro = sentence.substring(9, sentence.length() -2);
+                            }
+                            System.out.println("Pintando de color " + parametro + "...");
+                        }
+                        else if(sentence.startsWith("izquierda")){
+                            System.out.println("Moviéndose a la izquierda...");
+                        }
+                        else if(sentence.startsWith("derecha")){
+                            System.out.println("Moviéndose a la derecha...");
+                        }
+                        else if(sentence.startsWith("adelante")){
+                            System.out.println("Moviéndose a la adelante...");
+                        }
+                        else if(sentence.startsWith("atrás")){
+                            System.out.println("Moviéndose a la atrás...");
+                        }
+                        else if(sentence.startsWith("-->")){
+                            System.out.println("Declarando identificador...");
+                        }
+                        else if(sentence.startsWith("repetir")){
+                            String parametro;
+                            if(sentence.contains("$")){
+                                parametro = identificadores.get(sentence.substring(10, sentence.length() -2));
+                            }
+                            else{
+                                parametro = sentence.substring(10, sentence.length()-2);
+                            }
+                            repeatCode = Integer.parseInt(parametro);
+                        }
+                    }
+                }
+            }
+        }
+    }
     
     /*
         Llama los metodos de:
