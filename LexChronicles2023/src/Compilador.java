@@ -376,7 +376,29 @@ public class Compilador extends javax.swing.JFrame {
         Generar un archivo de entrada y uno de salida
         Se crea un lector del Buffer de los archivos
     */
-    
+    private void lexicalAnalysis() {
+        // Extraer tokens
+        Lexer lexer;
+        try {
+            File codigo = new File("code.encrypter");
+            FileOutputStream output = new FileOutputStream(codigo);
+            byte[] bytesText = jtpCode.getText().getBytes();
+            output.write(bytesText);
+            BufferedReader entrada = new BufferedReader(new InputStreamReader(new FileInputStream(codigo), "UTF8"));
+            lexer = new Lexer(entrada);
+            while (true) {
+                Token token = lexer.yylex();
+                if (token == null) {
+                    break;
+                }
+                tokens.add(token);
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("El archivo no pudo ser encontrado... " + ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println("Error al escribir en el archivo... " + ex.getMessage());
+        }
+    }
 
     /*
         Pasa a la gramática el arreglo de tokens
