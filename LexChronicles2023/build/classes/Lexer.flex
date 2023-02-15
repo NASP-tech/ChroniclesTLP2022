@@ -98,18 +98,6 @@ sur |
 este |
 oeste {return token(yytext(), "MOVIMIENTO", yyline, yycolumn);}
 
-/*Pintar*/
-pintar {return token(yytext(), "PINTAR", yyline, yycolumn);}
-
-/*Detener Pintar*/
-detenerPintar {return token(yytext(), "DETENER_PINTAR", yyline, yycolumn);}
-
-/*Tomar*/
-tomar |
-poner {return token(yytext(), "TOMAR", yyline, yycolumn);}
-
-/*Lanzar Moneda*/
-lanzarMoneda {return token(yytext(), "LANZAR_MONEDA", yyline, yycolumn);}
 
 /*Ver*/
 izquierdaEsObstaculo |
