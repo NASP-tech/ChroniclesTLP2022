@@ -642,6 +642,13 @@ public class Compilador extends javax.swing.JFrame {
         tokens.forEach(token -> {
             Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), "[" + token.getLine() + ", " + token.getColumn() + "]"};
             Functions.addRowDataInTable(tblTokens, data);
+            data[0] = token.getLexeme();
+            data[1]  =  token.getLexicalComp();
+              try {
+                  
+              }catch(Exception ex){
+
+            }
         });
     }
 

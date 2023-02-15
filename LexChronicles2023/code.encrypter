@@ -1,2 +1,9 @@
-$a = 1
-si
+$a = $b + $c
+
+pintar($a);
+
+si (){
+
+}
+ $a = true
+ $a = 4
