@@ -645,29 +645,23 @@ public class Compilador extends javax.swing.JFrame {
     private void fillTableTokens() {
         tokens.forEach(token -> {
             Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), "[" + token.getLine() + ", " + token.getColumn() + "]"};
-<<<<<<< HEAD
+
             Functions.addRowDataInTable(tblTokens, data);     
             data[0] = token.getLexeme();
             data[1]  =  token.getLexicalComp();
             try {         
-                FileWriter fw=new FileWriter("D:\\fichero1.txt");
-                FileReader fr=new FileReader("D:\\fichero1.txt");
+                FileWriter fw=new FileWriter("C:\\Users\\ALEXYSS-NEXUS\\Desktop\\musica\\fichero1.txt",true);
+                //FileReader fr=new FileReader("C:\\fichero1.txt");
                 PrintWriter pr= new PrintWriter(fw);
-                pr.print(token.getLexeme()+";"+
-                         token.getLexicalComp()+";\n");
+                pr.print(token.getLexicalComp()+";"+
+                         token.getLexeme()+";\n");
                    
             //liberar memoria
             pr.close();
+             JOptionPane.showMessageDialog(null, "Datos guardados");
+            
             }catch(Exception ex){
-=======
-            Functions.addRowDataInTable(tblTokens, data);
-            data[0] = token.getLexeme();
-            data[1]  =  token.getLexicalComp();
-              try {
-                  
-              }catch(Exception ex){
->>>>>>> fc66facaef1fd4b32d9413666dfa2b437b897b24
-
+                 JOptionPane.showMessageDialog(null,ex);
             }
         });
     }

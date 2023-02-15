@@ -1,13 +1,1 @@
-<<<<<<< HEAD
-$a = 1
-=======
-$a = $b + $c
-
-pintar($a);
-
-si (){
-
-}
- $a = true
- $a = 4
->>>>>>> fc66facaef1fd4b32d9413666dfa2b437b897b24
+$hola = 1
