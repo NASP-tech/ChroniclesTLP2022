@@ -1,18 +1,2 @@
-/*Estructura*/
-color $rojo --> #FF00F0;
-número $pasos --> 2;
-repetir(3){
-	pintar($rojo);
-	izquierda();
-	repetir($pasos){
-		pintar($azul);
-		derecha();
-		repetir($pasos){
-			pintar(#AAAAAA);
-		}
-	}
-	atrás();
-}
-color $azul --> #FFA0A0;
-adelante();
-color $blanco --> #FFFFFF;
+$a = 1
+si

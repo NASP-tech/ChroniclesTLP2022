@@ -29,6 +29,9 @@ Identificador = {Letra}({Letra}|{Digito})*
 
 /* Número */
 Numero = 0 | [1-9][0-9]*
+
+/* Booleano */
+booleano = true | false
 %%
 
 /* Comentarios o espacios en blanco */
@@ -39,6 +42,7 @@ Numero = 0 | [1-9][0-9]*
 
 /*Tipos de Dato*/
 número | 
+booleano |
 color { return token(yytext(), "TIPO_DATO", yyline, yycolumn);}
 
 /* Número */
@@ -47,12 +51,34 @@ color { return token(yytext(), "TIPO_DATO", yyline, yycolumn);}
 /* Colores */
 #[{Letra}|{Digito}]{6} {return token(yytext(), "COLOR", yyline, yycolumn);}
 
+
+/* booleano */
+{booleano} {return token(yytext(), "BOOLEANO", yyline, yycolumn);}
+
 /*Operadores de agrupación*/
 "(" {return token(yytext(), "PARENTESIS_A", yyline, yycolumn);}
 ")" {return token(yytext(), "PARENTESIS_C", yyline, yycolumn);}
 "{" {return token(yytext(), "LLAVE_A", yyline, yycolumn);}
 "}" {return token(yytext(), "LLAVE_C", yyline, yycolumn);}
 
+/*Operadores lógicos*/
+"==" {return token(yytext(), "OP_IGUAL", yyline, yycolumn);}
+"!=" {return token(yytext(), "OP_DISTINTO", yyline, yycolumn);}
+"<" {return token(yytext(), "OP_MENOR", yyline, yycolumn);}
+">" {return token(yytext(), "OP_MAYOR", yyline, yycolumn);}
+"<=" {return token(yytext(), "OP_MENOR_IGUAL", yyline, yycolumn);}
+">=" {return token(yytext(), "OP_MAYOR_IGUAL", yyline, yycolumn);}
+"<>" {return token(yytext(), "OP_DISTINTO", yyline, yycolumn);}
+"&&" {return token(yytext(), "OP_Y", yyline, yycolumn);}
+"||" {return token(yytext(), "OP_O", yyline, yycolumn);}
+"!" {return token(yytext(), "OP_NEGACION", yyline, yycolumn);}
+
+/*Operadores Aritméticos*/
+"+" {return token(yytext(), "OP_SUMA", yyline, yycolumn);}
+"-" {return token(yytext(), "OP_RESTA", yyline, yycolumn);}
+"*" {return token(yytext(), "OP_MULTIPLICACION", yyline, yycolumn);}
+"/" {return token(yytext(), "OP_DIVISION", yyline, yycolumn);}
+"%" {return token(yytext(), "OP_MODULO", yyline, yycolumn);}
 
 /*Signos de puntuación*/
 "," {return token(yytext(), "COMA", yyline, yycolumn);}
@@ -60,7 +86,7 @@ color { return token(yytext(), "TIPO_DATO", yyline, yycolumn);}
 
 
 /*Operador de Asignación*/
---> {return token(yytext(), "OP_ASIG", yyline, yycolumn);}
+"=" {return token(yytext(), "OP_ASIGNACION", yyline, yycolumn);}
 
 /*Movimiento*/
 adelante |
@@ -113,9 +139,6 @@ interrumpir { return token(yytext(), "DETENER_INTERRUMPIR", yyline, yycolumn); }
 si | 
 sino { return token(yytext(), "ESTRUCTURA_SI", yyline, yycolumn); }
 
-/*Operadores Lógicos*/
-"&" |
-"|" { return token(yytext(), "OP_LOGICO", yyline, yycolumn); }
 
 /*Final*/
 final { return token(yytext(), "FINAL", yyline, yycolumn); }

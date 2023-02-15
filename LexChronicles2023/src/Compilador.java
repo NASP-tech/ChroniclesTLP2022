@@ -466,7 +466,7 @@ public class Compilador extends javax.swing.JFrame {
         gramatica.delete(new String[] {"ERROR", "ERROR_1", "ERROR_2"},1);
         
         /*Agrupación de Valores*/
-        gramatica.group("VALOR", "(NUMERO | COLOR)", true);
+        gramatica.group("VALOR", "(NUMERO | COLOR | BOOLEANO)", true);
         
         /*Declaración de Variables*/
         gramatica.group("VARIABLE","TIPO_DATO IDENTIFICADOR OP_ASIG VALOR", true, identProd);        
