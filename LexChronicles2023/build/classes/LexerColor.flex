@@ -29,6 +29,9 @@ Identificador = {Letra}({Letra}|{Digito})*
 
 /* Número */
 Numero = 0 | [1-9][0-9]*
+
+/* Booleano */
+booleano = true | false
 %%
 
 /* Comentarios o espacios en blanco */
@@ -40,6 +43,7 @@ Numero = 0 | [1-9][0-9]*
 
 /*Tipos de Dato*/
 número | 
+booleano |
 color { return textColor(yychar, yylength(), new Color(148, 58, 173)); }
 
 /* Número */

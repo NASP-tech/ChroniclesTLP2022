@@ -645,6 +645,7 @@ public class Compilador extends javax.swing.JFrame {
     private void fillTableTokens() {
         tokens.forEach(token -> {
             Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), "[" + token.getLine() + ", " + token.getColumn() + "]"};
+<<<<<<< HEAD
             Functions.addRowDataInTable(tblTokens, data);     
             data[0] = token.getLexeme();
             data[1]  =  token.getLexicalComp();
@@ -658,6 +659,14 @@ public class Compilador extends javax.swing.JFrame {
             //liberar memoria
             pr.close();
             }catch(Exception ex){
+=======
+            Functions.addRowDataInTable(tblTokens, data);
+            data[0] = token.getLexeme();
+            data[1]  =  token.getLexicalComp();
+              try {
+                  
+              }catch(Exception ex){
+>>>>>>> fc66facaef1fd4b32d9413666dfa2b437b897b24
 
             }
         });
