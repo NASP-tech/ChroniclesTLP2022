@@ -19,8 +19,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -30,6 +33,7 @@ import javax.swing.Timer;
  *
  * @author Chronicles
  */
+
 public class Compilador extends javax.swing.JFrame {
 
     private String title;
@@ -641,7 +645,21 @@ public class Compilador extends javax.swing.JFrame {
     private void fillTableTokens() {
         tokens.forEach(token -> {
             Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), "[" + token.getLine() + ", " + token.getColumn() + "]"};
-            Functions.addRowDataInTable(tblTokens, data);
+            Functions.addRowDataInTable(tblTokens, data);     
+            data[0] = token.getLexeme();
+            data[1]  =  token.getLexicalComp();
+            try {         
+                FileWriter fw=new FileWriter("D:\\fichero1.txt");
+                FileReader fr=new FileReader("D:\\fichero1.txt");
+                PrintWriter pr= new PrintWriter(fw);
+                pr.print(token.getLexeme()+";"+
+                         token.getLexicalComp()+";\n");
+                   
+            //liberar memoria
+            pr.close();
+            }catch(Exception ex){
+
+            }
         });
     }
 
